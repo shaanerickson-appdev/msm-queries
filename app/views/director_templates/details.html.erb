@@ -1,0 +1,16 @@
+<h1>Director #<%= @id %> details</h1>
+
+<a href = "/directors">Go back</a>
+<% dir = Director.where({ :id => @id }).at(0) %>
+<dt>Name</dt>
+  <dd><%=dir.name%></dd>
+<dt>Dob</dt>
+  <dd><%=dir.dob%></dd>
+<dt>Bio</dt>
+  <dd><%=dir.bio%></dd>
+<dt>Image</dt>
+  <dd><img src = "<%= dir.image %>"></dd>
+<dt>Created at</dt>
+  <dd><%= time_ago_in_words(dir.created_at).capitalize%> ago</dd>
+<dt>Updated at</dt>
+  <dd><%= time_ago_in_words(dir.updated_at).capitalize%> ago</dd>
