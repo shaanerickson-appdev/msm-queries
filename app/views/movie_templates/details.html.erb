@@ -1,25 +1,23 @@
 <h1>Movie #<%= @id %> details</h1>
 
 <a href = "/movies">Go back</a>
-<% mov = Movie.where({ :id => @id }).at(0) %>
-<% dir = Director.where({ :id => mov.director_id }).at(0) %>
 <dt>Title</dt>
-  <dd><%=mov.title%></dd>
+  <dd><%=@movie.title%></dd>
 <dt>Year</dt>
-  <dd><%=mov.year%></dd>
+  <dd><%=@movie.year%></dd>
 <dt>Duration</dt>
-  <dd><%=mov.duration%></dd>
+  <dd><%=@movie.duration%></dd>
 <dt>Descritpion</dt>
-  <dd><%=mov.description%></dd>
+  <dd><%=@movie.description%></dd>
 <dt>Image</dt>
-  <dd><img src = "<%= mov.image %>"></dd>
+  <dd><img src = "<%= @movie.image %>"></dd>
 <dt>Director</dt>
-  <dd><%= if dir
-  dir.name
+  <dd><%= if @dir
+  @dir.name
   else
   "No director found"
   end%></dd>
 <dt>Created at</dt>
-  <dd><%= time_ago_in_words(mov.created_at).capitalize%> ago</dd>
+  <dd><%= time_ago_in_words(@movie.created_at).capitalize%> ago</dd>
 <dt>Updated at</dt>
-  <dd><%= time_ago_in_words(mov.updated_at).capitalize%> ago</dd>
+  <dd><%= time_ago_in_words(@movie.updated_at).capitalize%> ago</dd>

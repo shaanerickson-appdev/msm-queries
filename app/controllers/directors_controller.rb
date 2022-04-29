@@ -4,6 +4,8 @@ class DirectorsController < ApplicationController
   end
   def details
     @id = params.fetch("id")
+    @dir = Director.where({ :id => @id}).at(0)
+    @movies = Movie.where({ :director_id => @id})
     render({ :template => "director_templates/details"})
   end
   def youngest

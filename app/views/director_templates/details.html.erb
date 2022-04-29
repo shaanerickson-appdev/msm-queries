@@ -14,3 +14,29 @@
   <dd><%= time_ago_in_words(dir.created_at).capitalize%> ago</dd>
 <dt>Updated at</dt>
   <dd><%= time_ago_in_words(dir.updated_at).capitalize%> ago</dd>
+
+<h2>Filmography</h2>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th></th>
+  </tr>
+  <% @movies.each do |mov|%>
+  <tr>
+    <td><%= mov.id%></td>
+    <td><img src=<%= mov.image%>></td>
+    <td><%= mov.title%></td>
+    <td><%= mov.year%></td>
+    <td><%= if dir
+    dir.name
+    else
+    "No director found"
+    end%></td>
+    <td><a href = "/movies/<%= mov.id %>">Show details</a></td>
+  </tr>
+  <% end %>
+</table>

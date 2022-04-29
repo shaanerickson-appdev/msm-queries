@@ -1,0 +1,41 @@
+<h1>Actor #<%= @id %> details</h1>
+
+<a href = "/actors">Go back</a>
+<dt>Name</dt>
+  <dd><%=@actor.name%></dd>
+<dt>Dob</dt>
+  <dd><%=@actor.dob%></dd>
+<dt>Bio</dt>
+  <dd><%=@actor.bio%></dd>
+<dt>Image</dt>
+  <dd><img src = "<%= @actor.image %>"></dd>
+<dt>Created at</dt>
+  <dd><%= time_ago_in_words(@actor.created_at).capitalize%> ago</dd>
+<dt>Updated at</dt>
+  <dd><%= time_ago_in_words(@actor.updated_at).capitalize%> ago</dd>
+
+<h2>Filmography</h2>
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th>Character name</th>
+    <th></th>
+  </tr>
+  <% @roles.each do |role|%>
+  <% mov = Movie.where({ :id => role.movie_id }).at(0)%>
+  <% dir = Director.where({ :id => mov.director_id }).at(0)%>
+  <tr>
+    <td><%= mov.title%></td>
+    <td><%= mov.year%></td>
+    <td><%= if dir
+    dir.name
+    else
+    "No director found"
+    end%></td>
+    <td><%= role.name %></td>
+    <td><a href = "/movies/<%= mov.id %>">Show details</a></td>
+  </tr>
+  <% end %>
+</table>

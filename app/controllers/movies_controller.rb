@@ -4,7 +4,8 @@ class MoviesController < ApplicationController
   end
   def details
     @id = params.fetch("id")
-    @movie = Movie.where({ :id => @id})
+    @movie = Movie.where({ :id => @id}).at(0)
+    @dir = Director.where({ :id => @movie.director_id }).at(0)
     render({ :template => "movie_templates/details"})
   end
 end
